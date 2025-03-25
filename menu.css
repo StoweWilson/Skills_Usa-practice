@@ -111,7 +111,7 @@ nav {
 .main a{
     display: flex;
     position: relative;
-    font-size: 10rem;
+    font-size: 15vw;
     font-weight: bold;
     justify-content: center;
     align-items: center;
