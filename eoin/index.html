@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    home
+</body>
+</html>
+
+<script>
+class Order {
+    constructor(order_items = []) {
+        this.order_items = order_items;
+    }
+}
+
+class OrderStore {
+    constructor(key) {
+        this.key = key;
+    }
+
+    getOrder() {
+        const storedValue = localStorage.getItem(this.key);
+        if (storedValue) {
+            let storageJson = JSON.parse(storedValue);
+            let orderInstance = new Order();
+            Object.assign(orderInstance, storageJson);
+            return orderInstance;
+        }
+        return new Order(); // Return a new Order if nothing is stored
+    }
+
+    updateStore(order) {
+        localStorage.setItem(this.key, JSON.stringify(order));
+    }
+
+    addItem(item) {
+        let order = this.getOrder();
+        order.order_items.push(item);
+        this.updateStore(order); // Save the updated order
+    }
+}
+
+class MenuItem {
+    constructor(name, img_url, price) {
+        this.name = name;
+        this.img_url = img_url;
+        this.price = price;
+    }
+}
+
+// Example usage:
+let store = new OrderStore("order");
+
+store.addItem(new MenuItem("14\" pizza", "img.png", 14.00));
+store.addItem(new MenuItem("18\" pizza", "img.png", 19.00));
+store.addItem(new MenuItem("10\" pizza", "img.png", 19.00));
+
+console.log(store.getOrder());
+function checkoutOrder() {
+
+}
+
+
+function renderItems() {
+
+}
+
+   
+
+</script>
